@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background-color: #f2f2f2; }
+        .issue { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+<h2>System Health Dashboard</h2>
+
+<form method="get">
+    Filter by OS: <input type="text" name="os" />
+    <button type="submit">Search</button>
+</form>
+
+<table>
+    <tr>
+        <th>Machine ID</th>
+        <th>OS</th>
+        <th>Disk Encryption</th>
+        <th>OS Update</th>
+        <th>Antivirus</th>
+        <th>Sleep Setting</th>
+        <th>Last Check-In</th>
+    </tr>
+
+    <tr th:each="sys : ${systems}">
+        <td th:text="${sys.machineId}"></td>
+        <td th:text="${sys.os}"></td>
+        <td th:text="${sys.diskEncryption}" th:classappend="${sys.diskEncryption} != 'enabled' ? 'issue' : ''"></td>
+        <td th:text="${sys.osUpdateStatus}" th:classappend="${sys.osUpdateStatus} != 'up-to-date' ? 'issue' : ''"></td>
+        <td th:text="${sys.antivirusStatus}" th:classappend="${sys.antivirusStatus} != 'enabled' ? 'issue' : ''"></td>
+        <td th:text="${sys.sleepSetting}" th:classappend="${#numbers.parseInteger(sys.sleepSetting) > 10 ? 'issue' : ''}"></td>
+        <td th:text="${sys.timestamp}"></td>
+    </tr>
+</table>
+</body>
+</html>
