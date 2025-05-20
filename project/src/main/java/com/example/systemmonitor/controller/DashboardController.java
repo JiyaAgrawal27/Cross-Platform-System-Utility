@@ -11,5 +11,9 @@ public class DashboardController {
     public String greetUser(@RequestParam(defaultValue = "User") String name) {
         return "Hello, " + name + "! Welcome to the Utility Dashboard.";
     }
+        @GetMapping("/")
+    public String showDashboard() {
+        return "dashboard";
+    }
 }
 
