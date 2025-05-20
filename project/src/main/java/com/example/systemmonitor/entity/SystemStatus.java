@@ -6,6 +6,7 @@ import java.time.Instant;
 @Entity
     // This is to map to a table 
 public class SystemStatus {
+    //variables for the dashboard as per the requirements
     @Id
     private Long id;
     private String machineId;
