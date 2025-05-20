@@ -4,6 +4,7 @@ import jakarta.persistence.Id;
 import java.time.Instant;
 
 @Entity
+    // This is to map to a table 
 public class SystemStatus {
     @Id
     private Long id;
@@ -14,6 +15,4 @@ public class SystemStatus {
     private String antivirusStatus;
     private String sleepSetting;
     private Instant timestamp;
-
-    // Getters and setters...
 }
